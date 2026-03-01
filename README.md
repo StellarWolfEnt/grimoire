@@ -2,9 +2,9 @@
 
 ![Status](https://img.shields.io/badge/status-unstable-red)
 ![Language](https://img.shields.io/badge/language-Assembly-blue)
-![Version](https://img.shields.io/badge/version-0.0.1-blue)
+![Version](https://img.shields.io/badge/version-0.0.2-blue)
 
-A lightweight, low‑level game engine written in pure assembly with C headers for integration.
+A lightweight, low‑level game engine written in assembly and C.
 
 ## License
 

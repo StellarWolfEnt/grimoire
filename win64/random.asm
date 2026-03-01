@@ -43,39 +43,221 @@ section .rodata
 
     endian_test: dw 0xFF00
 
+    __GrimoireRandom_NextBytes_Functions:
+        dq GrimoireRandom_NextBytes_Loop_Next,
+        dq GrimoireRandom_NextBytes_Done
+
+;-------------------------------------------------------------------------------
+; PData
+;-------------------------------------------------------------------------------
+
+section .pdata rdata align=4
+    __GrimoireRandom_CreateNew_pdata:
+        dd GrimoireRandom_CreateNew - $$
+        dd GrimoireRandom_CreateNew_End - $$
+        dd __GrimoireRandom_CreateNew_xdata - $$
+    __GrimoireRandom_CreateSeed_pdata:
+        dd GrimoireRandom_CreateSeed - $$
+        dd GrimoireRandom_CreateSeed_End - $$
+        dd __GrimoireRandom_CreateSeed_xdata - $$
+    __GrimoireRandom_Destroy_pdata:
+        dd GrimoireRandom_Destroy - $$
+        dd GrimoireRandom_Destroy_End - $$
+        dd __GrimoireRandom_Destroy_xdata - $$
+    __GrimoireRandom_Next_pdata:
+        dd GrimoireRandom_Next - $$
+        dd GrimoireRandom_Next_End - $$
+        dd __GrimoireRandom_Next_xdata - $$
+    __GrimoireRandom_NextRange_pdata:
+        dd GrimoireRandom_NextRange - $$
+        dd GrimoireRandom_NextRange_End - $$
+        dd __GrimoireRandom_NextRange_xdata - $$
+    __GrimoireRandom_NextMax_pdata:
+        dd GrimoireRandom_NextMax - $$
+        dd GrimoireRandom_NextMax_End - $$
+        dd __GrimoireRandom_NextMax_xdata - $$
+    __GrimoireRandom_NextDouble_pdata:
+        dd GrimoireRandom_NextDouble - $$
+        dd GrimoireRandom_NextDouble_End - $$
+        dd __GrimoireRandom_NextDouble_xdata - $$
+    __GrimoireRandom_NextBytes_pdata:
+        dd GrimoireRandom_NextBytes - $$
+        dd GrimoireRandom_NextBytes_End - $$
+        dd __GrimoireRandom_NextBytes_xdata - $$
+    __GrimoireRandom_Serialize_pdata:
+        dd GrimoireRandom_Serialize - $$
+        dd GrimoireRandom_Serialize_End - $$
+        dd __GrimoireRandom_Serialize_xdata - $$
+    __GrimoireRandom_Deserialize_pdata:
+        dd GrimoireRandom_Deserialize - $$
+        dd GrimoireRandom_Deserialize_End - $$
+        dd __GrimoireRandom_Deserialize_xdata - $$
+    __GrimoireRandom_CloneInto_pdata:
+        dd GrimoireRandom_CloneInto - $$
+        dd GrimoireRandom_CloneInto_End - $$
+        dd __GrimoireRandom_CloneInto_xdata - $$
+    __GrimoireRandom_Clone_pdata:
+        dd GrimoireRandom_Clone - $$
+        dd GrimoireRandom_Clone_End - $$
+        dd __GrimoireRandom_Clone_xdata - $$
+    __GrimoireRandom_internal_sample_pdata:
+        dd GrimoireRandom_internal_sample - $$
+        dd GrimoireRandom_internal_sample_End - $$
+        dd __GrimoireRandom_internal_sample_xdata - $$
+    __GrimoireRandom_sample_pdata:
+        dd GrimoireRandom_sample - $$
+        dd GrimoireRandom_sample_End - $$
+        dd __GrimoireRandom_sample_xdata - $$
+    __GrimoireRandom_get_sample_for_large_range_pdata:
+        dd GrimoireRandom_get_sample_for_large_range - $$
+        dd GrimoireRandom_get_sample_for_large_range_End - $$
+        dd __GrimoireRandom_get_sample_for_large_range_xdata - $$
+
+;-------------------------------------------------------------------------------
+; XData
+;-------------------------------------------------------------------------------
+
+section .xdata rdata align=4
+    __GrimoireRandom_CreateNew_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_CreateSeed_xdata:
+        db 1
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_Destroy_xdata:
+        db 1,
+        db 0,
+        db 0,
+        db 0
+    __GrimoireRandom_Next_xdata:
+        db 1,
+        db 0,
+        db 0,
+        db 0
+    __GrimoireRandom_NextRange_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_NextMax_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_NextDouble_xdata:
+        db 1,
+        db 0,
+        db 0,
+        db 0
+    __GrimoireRandom_NextBytes_xdata:
+        db 1,
+        db 19,
+        db 7,
+        db 0,
+
+        db 0x00
+        db (2 | (4 << 4))
+
+        db 4
+        db (4 | (3 << 4))
+        dw 6
+
+        db 9
+        db (4 | (6 << 4))
+        dw 7
+
+        db 14
+        db (4 | (7 << 4))
+        dw 8
+    __GrimoireRandom_Serialize_xdata:
+        db 1,
+        db 0,
+        db 0,
+        db 0
+    __GrimoireRandom_Deserialize_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_CloneInto_xdata:
+        db 1,
+        db 0,
+        db 0,
+        db 0
+    __GrimoireRandom_Clone_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_internal_sample_xdata:
+        db 1,
+        db 0,
+        db 0,
+        db 0
+    __GrimoireRandom_sample_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+    __GrimoireRandom_get_sample_for_large_range_xdata:
+        db 1,
+        db 7,
+        db 1,
+        db 0,
+        db 0,
+        db (2 | (4 << 4))
+
 ;-------------------------------------------------------------------------------
 ; Public Functions
 ;-------------------------------------------------------------------------------
 
-section .text
+section .text align=16
 
 ; START: GrimoireRandom_CreateNew ----------------------------------------------
 
 GRIMOIRE_PUBLIC GrimoireRandom_CreateNew
     sub         rsp, 40
     call        clock
-    mov         ecx, dword UINT32_MAX
-    and         rax, rcx
     mov         rcx, rax
+    mov         eax, dword UINT32_MAX
+    and         rcx, rax
     call        GrimoireRandom_CreateSeed
     add         rsp, 40
     ret
+MARKER GrimoireRandom_CreateNew_End
 
 ; END: GrimoireRandom_CreateNew ------------------------------------------------
 
 ; START: GrimoireRandom_CreateSeed ---------------------------------------------
 
 GRIMOIRE_PUBLIC GrimoireRandom_CreateSeed
-    mov         dword [rsp + 8], ecx
     sub         rsp, 40
+    mov         dword [rsp + 48], ecx
     mov         rcx, 1
     mov         rdx, GrimoireRandom_SizeOf
     call        calloc
-    add         rsp, 40
     test        rax, rax
     jz          .GrimoireRandom_CreateSeed_Done
 
-    mov         edx, dword [rsp + 8]
+    mov         edx, dword [rsp + 48] ; seed
     mov         ecx, INT32_MAX
     cmp         edx, INT32_MIN
     and         edx, INT32_MAX
@@ -90,7 +272,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_CreateSeed
 
     mov         r8d, ecx
     mov         r9d, 1
-    mov         qword [rsp + 8], rax
+    mov         qword [rsp + 48], rax
     lea         rax, [rax + GrimoireRandom_SeedArray]
 
 %assign i 1
@@ -133,7 +315,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_CreateSeed
 %endrep
 %endrep
     mov         rcx, rax
-    mov         rax, [rsp + 8]
+    mov         rax, [rsp + 48]
 
     lea         rdx, [rax + GrimoireRandom_INext]
     mov         [rdx], rcx
@@ -141,10 +323,12 @@ GRIMOIRE_PUBLIC GrimoireRandom_CreateSeed
 
     lea         rdx, [rax + GrimoireRandom_INextP]
     add         rcx, 80
-    mov         [rdx], rcx   
+    mov         [rdx], rcx
 
 .GrimoireRandom_CreateSeed_Done:
+    add         rsp, 40
     ret
+MARKER GrimoireRandom_CreateSeed_End
 
 ; END: GrimoireRandom_CreateSeed -----------------------------------------------
 
@@ -152,6 +336,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_CreateSeed
 
 GRIMOIRE_PUBLIC GrimoireRandom_Destroy
     jmp free
+MARKER GrimoireRandom_Destroy_End
 
 ; END: GrimoireRandom_Destroy --------------------------------------------------
 
@@ -159,6 +344,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_Destroy
 
 GRIMOIRE_PUBLIC GrimoireRandom_Next
     jmp GrimoireRandom_internal_sample
+MARKER GrimoireRandom_Next_End
 
 ; END: GrimoireRandom_Next -----------------------------------------------------
 
@@ -166,6 +352,12 @@ GRIMOIRE_PUBLIC GrimoireRandom_Next
 
 GRIMOIRE_PUBLIC GrimoireRandom_NextRange
     sub         rsp, 40
+
+    cmp         ecx, edx
+    cmovg       r8d, ecx
+    cmovg       ecx, edx
+    cmovg       edx, r8d
+
     sub         r8d, edx
     mov         qword [rsp + 48], rcx
     mov         dword [rsp + 56], edx
@@ -185,6 +377,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_NextRange
     cvtsd2si    rax, xmm0
     add         rsp, 40
     ret
+MARKER GrimoireRandom_NextRange_End
 
 ; END: GrimoireRandom_NextRange ------------------------------------------------
 
@@ -192,6 +385,13 @@ GRIMOIRE_PUBLIC GrimoireRandom_NextRange
 
 GRIMOIRE_PUBLIC GrimoireRandom_NextMax
     sub         rsp, 40
+
+    mov         edx, INT32_MAX
+    cmp         ecx, INT32_MIN
+    and         ecx, INT32_MAX
+    cmove       ecx, edx
+    
+
     mov         dword [rsp + 48], edx
     call        GrimoireRandom_sample
     cvtsi2sd    xmm1, dword [rsp + 48]
@@ -200,6 +400,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_NextMax
     cvtsd2si    rax, xmm0
     add         rsp, 40
     ret
+MARKER GrimoireRandom_NextMax_End
 
 ; END: GrimoireRandom_NextMax --------------------------------------------------
 
@@ -207,6 +408,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_NextMax
 
 GRIMOIRE_PUBLIC GrimoireRandom_NextDouble
     jmp GrimoireRandom_sample
+MARKER GrimoireRandom_NextDouble_End
 
 ; END: GrimoireRandom_NextDouble -----------------------------------------------
 
@@ -221,25 +423,31 @@ GRIMOIRE_PUBLIC GrimoireRandom_NextBytes
     mov         rbx, rcx
     mov         rsi, rdx
     mov         rdi, r8
+    lea         r10, [rel __GrimoireRandom_NextBytes_Functions] ; internal_sample does not clobber r10, so we can use it to store the function pointers
 
-.GrimoireRandom_NextBytes_Loop:
+GrimoireRandom_NextBytes_Loop:
     cmp         rdi, 0
-    jz          .GrimoireRandom_NextBytes_Done
+    setz        al
+    shl         rax, 3
+    add         rax, r10
+    jmp         [rax]
 
+GrimoireRandom_NextBytes_Loop_Next:
     mov         rcx, rbx
     call        GrimoireRandom_internal_sample
     and         eax, 0xFF
     mov         byte [rsi], al
     inc         rsi
     dec         rdi
-    jmp         .GrimoireRandom_NextBytes_Loop
+    jmp         GrimoireRandom_NextBytes_Loop
 
-.GrimoireRandom_NextBytes_Done:
-    mov         rbx, [rsp + 48]
-    mov         rsi, [rsp + 56]
+GrimoireRandom_NextBytes_Done:
     mov         rdi, [rsp + 64]
+    mov         rsi, [rsp + 56]
+    mov         rbx, [rsp + 48]
     add         rsp, 40
     ret
+MARKER GrimoireRandom_NextBytes_End
 
 ; END: GrimoireRandom_NextBytes ------------------------------------------------
 
@@ -283,25 +491,25 @@ GRIMOIRE_PUBLIC GrimoireRandom_Serialize
     add         rcx, 8
 
     ret
+MARKER GrimoireRandom_Serialize_End
 
 ; END: GrimoireRandom_Serialize ------------------------------------------------
 
 ; START: GrimoireRandom_Deserialize --------------------------------------------
 
 GRIMOIRE_PUBLIC GrimoireRandom_Deserialize
-    mov         [rsp + 8], rcx
-
     sub         rsp, 40
+    mov         [rsp + 48], rcx
+
     mov         rcx, 1
     mov         rdx, GrimoireRandom_SizeOf
     call        calloc
-    add         rsp, 40
 
     test        rax, rax
     jz          .GrimoireRandom_Deserialize_Done
 
-    mov         rcx, [rsp + 8]
-    mov         [rsp + 8], rax
+    mov         rcx, [rsp + 48]
+    mov         [rsp + 48], rax
     lea         rax, [rax + GrimoireRandom_SeedArray]
     
 %rep 55
@@ -337,55 +545,117 @@ GRIMOIRE_PUBLIC GrimoireRandom_Deserialize
     add         rcx, 4
     add         rax, 8
 
-    mov         rax, [rsp + 8]
+    mov         rax, [rsp + 48]
 
 .GrimoireRandom_Deserialize_Done:
+    add         rsp, 40
     ret
+MARKER GrimoireRandom_Deserialize_End
 
 ; END: GrimoireRandom_Deserialize ----------------------------------------------
+
+; START: GrimoireRandom_CloneInto ----------------------------------------------
+
+GRIMOIRE_PUBLIC GrimoireRandom_CloneInto
+    mov         r8, rcx
+    mov         r9, rdx
+
+%rep 55
+    mov         eax, dword [r8]
+    mov         dword [r9], eax
+    add         r8, 4
+    add         r9, 4
+%endrep
+
+%rep 2
+    mov         rax, qword [r8]
+    sub         rax, rcx
+    add         rax, rdx
+    mov         qword [r9], rax
+    add         r8, 8
+    add         r9, 8
+%endrep
+
+    ret
+MARKER GrimoireRandom_CloneInto_End
+
+; END: GrimoireRandom_CloneInto ------------------------------------------------
+
+; START: GrimoireRandom_Clone --------------------------------------------------
+
+GRIMOIRE_PUBLIC GrimoireRandom_Clone
+    sub         rsp, 40
+    mov         [rsp + 48], rcx
+    mov         rcx, 1
+    mov         rdx, GrimoireRandom_SizeOf
+    call        calloc
+    test        rax, rax
+    jz          .GrimoireRandom_Clone_Done
+    mov         r8, [rsp + 48]
+    mov         r9, rax
+
+%rep 55
+    mov         edx, dword [r8]
+    mov         dword [r9], edx
+    add         r8, 4
+    add         r9, 4
+%endrep
+
+%rep 2
+    mov         rdx, qword [r8]
+    sub         rdx, [rsp + 48]
+    add         rdx, rax
+    mov         qword [r9], rdx
+    add         r8, 8
+    add         r9, 8
+%endrep
+
+.GrimoireRandom_Clone_Done:
+    add         rsp, 40
+    ret
+MARKER GrimoireRandom_Clone_End
+
+; END: GrimoireRandom_Clone ----------------------------------------------------
 
 ;-------------------------------------------------------------------------------
 ; Private Functions
 ;-------------------------------------------------------------------------------
 
-section .text
+section .text align=16
 
 ; START: GrimoireRandom_internal_sample ----------------------------------------
 
 GRIMOIRE_PRIVATE GrimoireRandom_internal_sample
-    mov         r8, [rcx + GrimoireRandom_INext]
-    mov         r9, [rcx + GrimoireRandom_INextP]
-    lea         r10, [rcx + GrimoireRandom_SeedArray]
-    lea         r11, [rcx + GrimoireRandom_INext]
-    mov         rax, rcx
+    mov         rdx, rcx
+    mov         rax, qword [rdx + GrimoireRandom_INext]
+    mov         rcx, qword [rdx + GrimoireRandom_INextP]
+    lea         r8, [rdx + GrimoireRandom_INext]
 
-    add         r8, 4
-    cmp         r8, r11
-    cmovge      r8, r10
+    add         rax, 4
+    cmp         rax, r8
+    cmove       rax, rdx
+    mov         qword [rdx + GrimoireRandom_INext], rax
 
+    add         rcx, 4
+    cmp         rcx, r8
+    cmove       rcx, rdx
+    mov         qword [rdx + GrimoireRandom_INextP], rcx
 
-    add         r9, 4
-    cmp         r9, r11
-    cmovge      r9, r10
+    mov         ecx, dword [rcx]
+    sub         dword [rax], ecx
 
-    mov         ecx, dword [r8]
-    sub         ecx, dword [r9]
-
-    mov         edx, ecx
-    dec         edx
-    cmp         ecx, INT32_MAX
-    cmove       ecx, edx
-
-    mov         edx, ecx
-    add         edx, INT32_MAX
+    mov         ecx, [rax]
+    cmp         dword [rax], INT32_MAX
+    mov         r9d, 0x7FFFFFFE
+    cmove       ecx, r9d
+    mov         r9d, ecx
+    add         r9d, INT32_MAX
     cmp         ecx, 0
-    cmovl       ecx, edx
-    
-    mov         dword [r8], ecx
-    mov         [rax + GrimoireRandom_INext], r8
-    mov         [rax + GrimoireRandom_INextP], r9
+    cmovl       ecx, r9d
+    mov         dword [rax], ecx
     mov         eax, ecx
     ret
+MARKER GrimoireRandom_internal_sample_End
 
 ; END: GrimoireRandom_internal_sample ------------------------------------------
 
@@ -394,12 +664,13 @@ GRIMOIRE_PRIVATE GrimoireRandom_internal_sample
 GRIMOIRE_PRIVATE GrimoireRandom_sample
     sub         rsp, 40
     call        GrimoireRandom_internal_sample
-    add         rsp, 40
     cvtsi2sd    xmm0, eax
     mov         rax, INT32_MAX
     cvtsi2sd    xmm1, rax
     divsd       xmm0, xmm1
+    add         rsp, 40
     ret
+MARKER GrimoireRandom_sample_End
 
 ; END: GrimoireRandom_sample ---------------------------------------------------
 
@@ -410,11 +681,10 @@ GRIMOIRE_PRIVATE GrimoireRandom_get_sample_for_large_range
     call        GrimoireRandom_internal_sample
     mov         [rsp + 48], eax
     call        GrimoireRandom_internal_sample
-    add         rsp, 40
     
     and         eax, 1
     cmp         eax, 0
-    mov         eax, [rsp + 8]
+    mov         eax, [rsp + 48]
     mov         edx, eax
     neg         edx
     cmove       eax, edx
@@ -427,6 +697,8 @@ GRIMOIRE_PRIVATE GrimoireRandom_get_sample_for_large_range
     movapd      xmm2, oword [rel twos]
     mulsd       xmm1, xmm2
     divsd       xmm0, xmm1
+    add         rsp, 40
     ret
+MARKER GrimoireRandom_get_sample_for_large_range_End
 
 ; END: GrimoireRandom_get_sample_for_large_range -------------------------------

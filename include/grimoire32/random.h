@@ -159,6 +159,30 @@ GRIMOIRE_API void GrimoireRandom_Serialize(GrimoireRandom random, uint8_t* buffe
  */
 GRIMOIRE_API GrimoireRandom GrimoireRandom_Deserialize(const uint8_t* buffer);
 
+/**
+ * @brief Clones an existing RNG instance into a new one.
+ *
+ * The new instance will have the same internal state as the source, meaning it will produce the same sequence of random
+ * numbers from that point onward. This is useful for creating independent RNG instances that share the same state
+ * without affecting each other.
+ *
+ * @param source The RNG instance to clone.
+ * @param destination A pointer to a `GrimoireRandom` variable where the new instance will be stored.
+ */
+GRIMOIRE_API void GrimoireRandom_CloneInto(const GrimoireRandom source, GrimoireRandom destination);
+
+/**
+ * @brief Clones an existing RNG instance and returns the new instance.
+ *
+ * This function is a convenience wrapper around `GrimoireRandom_CloneInto` that allocates a new RNG instance and
+ * returns it directly. The caller is responsible for managing the memory of the cloned instance (i.e., calling
+ * `GrimoireRandom_Destroy` when done).
+ *
+ * @param source The RNG instance to clone.
+ * @return A new RNG instance with the same state as the source, or `NULL` on failure.
+ */
+GRIMOIRE_API GrimoireRandom GrimoireRandom_Clone(const GrimoireRandom source);
+
 GRIMOIRE_END
 
 #endif // !GRIMOIRE_RANDOM_H
