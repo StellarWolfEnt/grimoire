@@ -1,0 +1,1358 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Procedural content generation library for Windows x64.">
+      
+      
+      
+        <link rel="canonical" href="https://stellarwolfent.github.io/grimoire-pcg/getting-started/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Getting Started - Grimoire</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Grimoire" class="md-header__button md-logo" aria-label="Grimoire" data-md-component="logo">
+      <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 35.656852 50.656852"
+   version="1.1"
+   id="svg2"
+   width="35.656853"
+   height="50.656853"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <path
+     d="M 17.828427,2.8284271 2.8284271,17.828427 l 14.9999999,15"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="8"
+     stroke-linejoin="bevel"
+     id="path1" />
+  <path
+     d="m 17.828427,17.828427 15,15 -15,15"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="8"
+     stroke-linejoin="bevel"
+     id="path2" />
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Grimoire
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/StellarWolfEnt/grimoire-pcg" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    StellarWolfEnt/grimoire-pcg
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Grimoire" class="md-nav__button md-logo" aria-label="Grimoire" data-md-component="logo">
+      <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 35.656852 50.656852"
+   version="1.1"
+   id="svg2"
+   width="35.656853"
+   height="50.656853"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <path
+     d="M 17.828427,2.8284271 2.8284271,17.828427 l 14.9999999,15"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="8"
+     stroke-linejoin="bevel"
+     id="path1" />
+  <path
+     d="m 17.828427,17.828427 15,15 -15,15"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="8"
+     stroke-linejoin="bevel"
+     id="path2" />
+</svg>
+    </a>
+    Grimoire
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/StellarWolfEnt/grimoire-pcg" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    StellarWolfEnt/grimoire-pcg
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-package-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Package Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-and-c-integration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C and C++ Integration Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nasm-integration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASM Integration Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Headers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nasm-import-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASM Import File
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-deterministic-rng-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Deterministic RNG Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-noise-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Noise Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-nasm-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal NASM Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deterministic-content-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deterministic Content Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ownership-and-lifetime-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ownership and Lifetime Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interop-notes-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interop Notes (C++)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linker-cannot-resolve-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linker cannot resolve symbols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-dll-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime DLL not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nasm-include-cannot-be-resolved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASM include cannot be resolved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-reproducible-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-reproducible outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Reminder
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/random/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Random API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/noise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Noise API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recipes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-package-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Package Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-and-c-integration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C and C++ Integration Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nasm-integration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASM Integration Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Headers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nasm-import-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASM Import File
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-deterministic-rng-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Deterministic RNG Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-noise-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal Noise Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-nasm-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimal NASM Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deterministic-content-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deterministic Content Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ownership-and-lifetime-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ownership and Lifetime Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interop-notes-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interop Notes (C++)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linker-cannot-resolve-symbols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linker cannot resolve symbols
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runtime-dll-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtime DLL not found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nasm-include-cannot-be-resolved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASM include cannot be resolved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-reproducible-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-reproducible outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Reminder
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="getting-started">Getting Started</h1>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>Windows x64 target.</li>
+<li>A C, C++, or NASM-based consumer project.</li>
+<li>Public headers from <code>include/grimoire-pcg</code> for C/C++ integration, or <code>inc/grimoire_pcg.inc</code> for NASM integration.</li>
+<li>Built DLL plus matching import library from your build pipeline.</li>
+</ul>
+<h2 id="export-package-layout">Export Package Layout</h2>
+<p>The packaged export is organized as follows:</p>
+<ul>
+<li><code>export/grimoire_pcg/bin/grimoire_pcg.dll</code></li>
+<li><code>export/grimoire_pcg/bin/grimoire_pcg.lib</code></li>
+<li><code>export/grimoire_pcg/inc/grimoire_pcg.inc</code></li>
+<li><code>export/grimoire_pcg/include/grimoire-pcg/*.h</code></li>
+</ul>
+<p><code>grimoire_pcg.lib</code> is the import library used at link time on Windows.
+<code>grimoire_pcg.dll</code> must be present at runtime.</p>
+<h2 id="c-and-c-integration-flow">C and C++ Integration Flow</h2>
+<ol>
+<li>Add <code>export/grimoire_pcg/include</code> to your compiler include paths.</li>
+<li>Link against <code>export/grimoire_pcg/bin/grimoire_pcg.lib</code>.</li>
+<li>Ensure <code>export/grimoire_pcg/bin/grimoire_pcg.dll</code> is available at runtime.</li>
+<li>Include API headers from <code>grimoire-pcg/</code>.</li>
+</ol>
+<h2 id="nasm-integration-flow">NASM Integration Flow</h2>
+<ol>
+<li>Add <code>export/grimoire_pcg/inc</code> to NASM include paths.</li>
+<li>Link against <code>export/grimoire_pcg/bin/grimoire_pcg.lib</code>.</li>
+<li>Ensure <code>export/grimoire_pcg/bin/grimoire_pcg.dll</code> is available at runtime.</li>
+<li>Include <code>grimoire_pcg.inc</code> in assembly sources that call the library.</li>
+</ol>
+<p>The exported <code>.inc</code> file declares the external procedure names for the public API so NASM modules can reference the DLL imports directly.</p>
+<h2 id="public-headers">Public Headers</h2>
+<ul>
+<li><code>grimoire-pcg/common.h</code></li>
+<li><code>grimoire-pcg/random.h</code></li>
+<li><code>grimoire-pcg/noise.h</code></li>
+</ul>
+<h2 id="nasm-import-file">NASM Import File</h2>
+<ul>
+<li><code>grimoire_pcg.inc</code></li>
+</ul>
+<p>The NASM import file exposes external declarations for:</p>
+<ul>
+<li>RNG lifecycle and sampling functions</li>
+<li>Serialization and cloning functions</li>
+<li>Value noise, Perlin noise, FBM, and Billow entry points</li>
+</ul>
+<h2 id="minimal-deterministic-rng-example">Minimal Deterministic RNG Example</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;grimoire-pcg/random.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">GrimoireRandom</span><span class="w"> </span><span class="n">rng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GrimoireRandom_CreateSeed</span><span class="p">(</span><span class="mi">1337</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">rng</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GrimoireRandom_NextRange</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="w">    </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">roll</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">GrimoireRandom_Destroy</span><span class="p">(</span><span class="n">rng</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="minimal-noise-example">Minimal Noise Example</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;grimoire-pcg/noise.h&gt;</span>
+
+<span class="kt">float</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Grimoire_Perlin2D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mi">2026</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="minimal-nasm-example">Minimal NASM Example</h2>
+<div class="highlight"><pre><span></span><code><span class="nf">bits</span><span class="w"> </span><span class="mi">64</span>
+
+<span class="err">%</span><span class="nf">include</span><span class="w"> </span><span class="err">&quot;</span><span class="no">grimoire_pcg.inc</span><span class="err">&quot;</span>
+
+<span class="nf">section</span><span class="w"> </span><span class="no">.data</span>
+<span class="w">    </span><span class="nf">seed</span><span class="w">    </span><span class="no">dd</span><span class="w"> </span><span class="mi">1337</span>
+
+<span class="nf">section</span><span class="w"> </span><span class="no">.text</span>
+<span class="nf">global</span><span class="w"> </span><span class="no">example_entry</span>
+
+<span class="nl">example_entry:</span>
+<span class="w">    </span><span class="nf">sub</span><span class="w"> </span><span class="no">rsp</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">ecx</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="no">rel</span><span class="w"> </span><span class="no">seed</span><span class="p">]</span>
+<span class="w">    </span><span class="nf">call</span><span class="w"> </span><span class="no">GrimoireRandom_CreateSeed</span>
+
+<span class="w">    </span><span class="nf">test</span><span class="w"> </span><span class="no">rax</span><span class="p">,</span><span class="w"> </span><span class="no">rax</span>
+<span class="w">    </span><span class="nf">jz</span><span class="w"> </span><span class="no">.done</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">rbx</span><span class="p">,</span><span class="w"> </span><span class="no">rax</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">rcx</span><span class="p">,</span><span class="w"> </span><span class="no">rax</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">edx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">r8d</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">    </span><span class="nf">call</span><span class="w"> </span><span class="no">GrimoireRandom_NextRange</span>
+
+<span class="w">    </span><span class="nf">mov</span><span class="w"> </span><span class="no">rcx</span><span class="p">,</span><span class="w"> </span><span class="no">rbx</span>
+<span class="w">    </span><span class="nf">call</span><span class="w"> </span><span class="no">GrimoireRandom_Destroy</span>
+
+<span class="nl">.done:</span>
+<span class="w">    </span><span class="nf">add</span><span class="w"> </span><span class="no">rsp</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span>
+<span class="w">    </span><span class="nf">ret</span>
+</code></pre></div>
+<p>This example demonstrates the basic NASM flow:</p>
+<ol>
+<li>Include <code>grimoire_pcg.inc</code>.</li>
+<li>Call the exported creation function.</li>
+<li>Use the returned handle in subsequent API calls.</li>
+<li>Destroy the handle before returning.</li>
+</ol>
+<p>When integrating from NASM, follow the Windows x64 calling convention expected by the DLL interface.</p>
+<h2 id="deterministic-content-pattern">Deterministic Content Pattern</h2>
+<p>For reproducible procedural content:</p>
+<ol>
+<li>Pick and document a fixed seed per world/map/profile.</li>
+<li>Keep call order stable across builds where exact replay matters.</li>
+<li>Persist RNG state when you need exact continuation points.</li>
+</ol>
+<h2 id="ownership-and-lifetime-rules">Ownership and Lifetime Rules</h2>
+<ul>
+<li><code>GrimoireRandom</code> is opaque and heap-managed by the library.</li>
+<li>Every successful create/clone/deserialize should be paired with destroy.</li>
+<li>It is safe to call destroy with <code>NULL</code>.</li>
+<li>The same ownership rules apply when handles are managed from NASM.</li>
+</ul>
+<h2 id="interop-notes-c">Interop Notes (C++)</h2>
+<ul>
+<li>Headers already provide <code>extern "C"</code> handling via macros.</li>
+<li>Include the same headers directly in C++ without extra wrappers.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="linker-cannot-resolve-symbols">Linker cannot resolve symbols</h3>
+<ul>
+<li>Verify you linked the import library for the same build.</li>
+<li>Confirm target architecture is x64.</li>
+<li>For NASM projects, confirm the <code>.obj</code> output is linked with <code>grimoire_pcg.lib</code>.</li>
+</ul>
+<h3 id="runtime-dll-not-found">Runtime DLL not found</h3>
+<ul>
+<li>Put the DLL next to the executable or on an expected DLL search path.</li>
+</ul>
+<h3 id="nasm-include-cannot-be-resolved">NASM include cannot be resolved</h3>
+<ul>
+<li>Verify the assembler include path contains <code>export/grimoire_pcg/inc</code>.</li>
+<li>Confirm the source uses <code>%include "grimoire_pcg.inc"</code>.</li>
+</ul>
+<h3 id="non-reproducible-outputs">Non-reproducible outputs</h3>
+<ul>
+<li>Ensure fixed seed usage.</li>
+<li>Ensure identical function call order.</li>
+<li>Avoid replacing deterministic create calls with non-deterministic create calls.</li>
+</ul>
+<h2 id="security-reminder">Security Reminder</h2>
+<p><code>GrimoireRandom</code> is not cryptographically secure.
+Do not use it for cryptographic keys, secure tokens, or security boundaries.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
