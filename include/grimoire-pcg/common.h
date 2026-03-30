@@ -39,4 +39,13 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/**
+ * @typedef hash_t
+ * @brief 32-bit signed integer used as a deterministic seed.
+ *
+ * Can be used for RNGs, noise generation, or any system requiring a reproducible
+ * pseudo-random value. Ensures consistent output given the same seed.
+ */
+typedef int32_t hash_t;
+
 #endif // GRIMOIRE_COMMON_H

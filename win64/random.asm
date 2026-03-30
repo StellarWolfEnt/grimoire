@@ -34,7 +34,7 @@ extern free
 %define INT32_MIN   0x80000000
 %define MSEED       161803398
 
-section .rodata
+section .rodata align=16
     twos: dq 2.0, 2.0
 
     range_funcs:
@@ -120,17 +120,17 @@ section .pdata rdata align=4
 section .xdata rdata align=4
     __GrimoireRandom_CreateNew_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_CreateSeed_xdata:
-        db 1
-        db 7,
+        db 1,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_Destroy_xdata:
         db 1,
@@ -144,17 +144,17 @@ section .xdata rdata align=4
         db 0
     __GrimoireRandom_NextRange_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_NextMax_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_NextDouble_xdata:
         db 1,
@@ -163,24 +163,24 @@ section .xdata rdata align=4
         db 0
     __GrimoireRandom_NextBytes_xdata:
         db 1,
-        db 19,
+        db 28,
         db 7,
         db 0,
 
-        db 0x00
+        db 28,
+        db (4 | (7 << 4)),
+        dw 8,
+
+        db 20,
+        db (4 | (6 << 4)),
+        dw 7,
+
+        db 12,
+        db (4 | (3 << 4)),
+        dw 6,
+
+        db 4,
         db (2 | (4 << 4))
-
-        db 4
-        db (4 | (3 << 4))
-        dw 6
-
-        db 9
-        db (4 | (6 << 4))
-        dw 7
-
-        db 14
-        db (4 | (7 << 4))
-        dw 8
     __GrimoireRandom_Serialize_xdata:
         db 1,
         db 0,
@@ -188,10 +188,10 @@ section .xdata rdata align=4
         db 0
     __GrimoireRandom_Deserialize_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_CloneInto_xdata:
         db 1,
@@ -200,10 +200,10 @@ section .xdata rdata align=4
         db 0
     __GrimoireRandom_Clone_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_internal_sample_xdata:
         db 1,
@@ -212,17 +212,17 @@ section .xdata rdata align=4
         db 0
     __GrimoireRandom_sample_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
     __GrimoireRandom_get_sample_for_large_range_xdata:
         db 1,
-        db 7,
+        db 4,
         db 1,
         db 0,
-        db 0,
+        db 4,
         db (2 | (4 << 4))
 
 ;-------------------------------------------------------------------------------
@@ -255,7 +255,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_CreateSeed
     mov         rdx, GrimoireRandom_SizeOf
     call        calloc
     test        rax, rax
-    jz          .GrimoireRandom_CreateSeed_Done
+    jz          .GrimoireRandom_CreateSeed_Done ; branch 1
 
     mov         edx, dword [rsp + 48] ; seed
     mov         ecx, INT32_MAX
@@ -423,7 +423,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_NextBytes
     mov         rbx, rcx
     mov         rsi, rdx
     mov         rdi, r8
-    lea         r10, [rel __GrimoireRandom_NextBytes_Functions] ; internal_sample does not clobber r10, so we can use it to store the function pointers
+    lea         r10, [rel __GrimoireRandom_NextBytes_Functions]
 
 GrimoireRandom_NextBytes_Loop:
     cmp         rdi, 0
@@ -468,6 +468,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_Serialize
     add         rdx, 4
 %endrep
 
+%rep 2
     mov         rax, qword [rcx]
     sub         rax, r8
     shr         rax, 2
@@ -478,17 +479,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_Serialize
     mov         dword [rdx], eax
     add         rdx, 4
     add         rcx, 8
-
-    mov         rax, qword [rcx]
-    sub         rax, r8
-    shr         rax, 2
-    mov         r10d, eax
-    bswap       r10d
-    cmp         byte [rel endian_test], 0x00
-    cmovne      eax, r10d
-    mov         dword [rdx], eax
-    add         rdx, 4
-    add         rcx, 8
+%endrep
 
     ret
 MARKER GrimoireRandom_Serialize_End
@@ -506,12 +497,13 @@ GRIMOIRE_PUBLIC GrimoireRandom_Deserialize
     call        calloc
 
     test        rax, rax
-    jz          .GrimoireRandom_Deserialize_Done
+    jz          .GrimoireRandom_Deserialize_Done ; branch 2
 
     mov         rcx, [rsp + 48]
     mov         [rsp + 48], rax
     lea         rax, [rax + GrimoireRandom_SeedArray]
-    
+    mov         r9, rax
+     
 %rep 55
     mov         edx, dword [rcx]
     mov         r8d, edx
@@ -523,27 +515,23 @@ GRIMOIRE_PUBLIC GrimoireRandom_Deserialize
     add         rax, 4
 %endrep
 
+%rep 2
     mov         edx, dword [rcx]
     mov         r8d, edx
     bswap       r8d
     cmp         byte [rel endian_test], 0x00
     cmovne      edx, r8d
+    mov         r10d, edx
+    mov         r8, r9
+    sub         r8, 4
     shl         rdx, 2
-    add         rdx, rax
-    mov         [rax], rdx
+    add         rdx, r9
+    cmp         r10d, -1
+    cmove       rdx, r8
+    mov         qword [rax], rdx
     add         rcx, 4
     add         rax, 8
-
-    mov         edx, dword [rcx]
-    mov         r8d, edx
-    bswap       r8d
-    cmp         byte [rel endian_test], 0x00
-    cmovne      edx, r8d
-    shl         rdx, 2
-    add         rdx, rax
-    mov         [rax], rdx
-    add         rcx, 4
-    add         rax, 8
+%endrep
 
     mov         rax, [rsp + 48]
 
@@ -590,7 +578,7 @@ GRIMOIRE_PUBLIC GrimoireRandom_Clone
     mov         rdx, GrimoireRandom_SizeOf
     call        calloc
     test        rax, rax
-    jz          .GrimoireRandom_Clone_Done
+    jz          .GrimoireRandom_Clone_Done ; branch 3
     mov         r8, [rsp + 48]
     mov         r9, rax
 

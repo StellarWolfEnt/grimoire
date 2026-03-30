@@ -1,38 +1,18 @@
-Grimoire No-Derivatives License (GNDL) v1.0
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 
 Copyright (c) 2026 Stellar Wolf Entertainment | LupusInferni
-All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to use,
-run, and study the Software, and to reference the Source for research or
-educational insights, subject to the following conditions:
+You are free to:
 
-1. Unmodified use only
-   You may not modify, adapt, translate, reverse engineer, or create derivative
-   works of the Software or any part of it. "Unmodified" means byte-for-byte
-   identical to the original distributed Source or binaries.
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material for any purpose, even commercially
 
-2. Redistribution
-   You may redistribute exact, unmodified copies of the Source or binaries,
-   provided that the copyright notice, this license, and all notices within the
-   Software are preserved and included with the redistribution.
+Under the following terms:
 
-3. No dialects
-   The Software must not be forked or modified into alternate versions or
-   dialects for any purpose.
+- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
-4. No trademark or endorsement rights
-   This license does not grant rights to use any name, logo, or trademarks of
-   the copyright holder to endorse or promote derived or redistributed works.
+- ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
-5. No patent license
-   No patent rights are granted by this license.
+No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Disclaimer — The work is provided "as-is", without warranty of any kind, either express or implied. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the work or the use or other dealings in the work.
